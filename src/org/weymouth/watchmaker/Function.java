@@ -62,18 +62,20 @@ public class Function {
 
 	public void mutate(Random rng) {
 		int point = rng.nextInt(Main.NUMBER_OF_PARAMETERS);
-		double p = parameters.get(point);
-		p += rng.nextDouble() * 2.0 - 1.0;
-		if (p > 10.0) p = 10.0;
-		if (p < -10.0) p = -10.0;
-		parameters.add(point,p);
-		parameters.remove(point+1);
+		double p = parameters.get(point).doubleValue();
+		double delta = rng.nextDouble() * 2.0 - 1.0;
+		p = p + delta;
+		if ((p < 10.0) && (p > -10.0)) {
+			Double d = new Double(p);
+			parameters.add(point,d);
+			parameters.remove(point+1);
+		}
 	}
 
 	public void scramble(Random rng) {
 		for (int i = 0; i< 10; i++) {
 			int point = rng.nextInt(Main.NUMBER_OF_PARAMETERS);
-			double p = parameters.get(point);
+			Double p = parameters.get(point);
 			point = rng.nextInt(Main.NUMBER_OF_PARAMETERS);
 			parameters.add(point,p);
 			parameters.remove(point+1);			

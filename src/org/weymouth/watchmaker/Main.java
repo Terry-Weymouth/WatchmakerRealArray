@@ -22,7 +22,7 @@ import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 public class Main {
 	
-	public static final int NUMBER_OF_PARAMETERS = 3;
+	public static final int NUMBER_OF_PARAMETERS = 5;
 	
 	public static void main(String[] args) {
 		(new Main()).exec();
@@ -39,6 +39,7 @@ public class Main {
 		operators.add(new FunctionCrossover(1));
 		operators.add(new FunctionMutation(new Probability(0.3)));
 		operators.add(new FunctionScramble(new Probability(0.3)));
+		operators.add(new FunctionReplace(new Probability(0.1)));
 
 		EvolutionaryOperator<Function> pipeline = new EvolutionPipeline<Function>(operators);
 		
