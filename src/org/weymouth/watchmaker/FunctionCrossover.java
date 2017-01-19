@@ -1,16 +1,23 @@
 package org.weymouth.watchmaker;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
+import org.uncommons.watchmaker.framework.operators.AbstractCrossover;
 
-public class FunctionCrossover implements EvolutionaryOperator<Function> {
+public class FunctionCrossover extends AbstractCrossover<Function> {
+
+	protected FunctionCrossover(int crossoverPoints) {
+		super(crossoverPoints);
+	}
 
 	@Override
-	public List<Function> apply(List<Function> list, Random rng) {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<Function> mate(Function parent1, Function parent2, int numberOfCrossoverPoints, Random rng) {
+		List<Function> ret = new ArrayList<Function>();
+		ret.add(parent1.cross(parent2,rng));
+		ret.add(parent2.cross(parent1,rng));
+		return ret;
 	}
 
 }
