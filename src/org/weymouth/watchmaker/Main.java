@@ -31,7 +31,7 @@ public class Main {
 	private void exec() {
 		
 		CandidateFactory<Function> candidateFactory = new FunctionFactory();
-		FitnessEvaluator<? super Function> fitnessEvaluator = new FunctionFitnessEvaluator();
+		FunctionFitnessEvaluator fitnessEvaluator = new FunctionFitnessEvaluator();
 		SelectionStrategy<? super Function> selectionStrategy = new RouletteWheelSelection();
 		Random rng = new MersenneTwisterRNG();
 
@@ -50,27 +50,18 @@ public class Main {
                 selectionStrategy,
                 rng);
 	
-		engine.addEvolutionObserver(new EvolutionObserver<Function>()
-		{
-		    public void populationUpdate(PopulationData<? extends Function> data)
-		    {
-		    	Function fn = data.getBestCandidate();
-		    	double error = fitnessEvaluator.getFitness(fn, null);
-		        System.out.printf("Generation %d: (%f) %s\n",
-		                          data.getGenerationNumber(),
-		                          error,
-		                          fn);
-		    }
-		});
+		engine.addEvolutionObserver(new FunctionEvolutionObserver(fitnessEvaluator));
+
+		boolean naturalFitness = false;		
 		
-		int populationSize = 1000;
-		int eliteCount = 5;
-		int generationLimit = 10000;
-		boolean naturalFitness = false;
-		TerminationCondition t1 = new Stagnation(generationLimit, naturalFitness);
+//		int generationLimit = 10000;
+//		TerminationCondition t1 = new Stagnation(generationLimit, naturalFitness);
 	
 		double targetFitness = 0.01;
 		TerminationCondition t2 = new TargetFitness(targetFitness,naturalFitness);
+		
+		int populationSize = 1000;
+		int eliteCount = 5;
 		
 		engine.evolve(populationSize,eliteCount,t2);
 	        
