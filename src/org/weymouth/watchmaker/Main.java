@@ -22,7 +22,7 @@ import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 public class Main {
 	
-	public static final int NUMBER_OF_PARAMETERS = 5;
+	public static final int NUMBER_OF_PARAMETERS = 3;
 	
 	public static void main(String[] args) {
 		(new Main()).exec();
@@ -37,7 +37,7 @@ public class Main {
 
 		List<EvolutionaryOperator<Function>> operators = new LinkedList<EvolutionaryOperator<Function>>();
 		operators.add(new FunctionCrossover(1));
-		operators.add(new FunctionMutation(new Probability(0.5)));
+		operators.add(new FunctionMutation(new Probability(0.3)));
 		operators.add(new FunctionScramble(new Probability(0.3)));
 
 		EvolutionaryOperator<Function> pipeline = new EvolutionPipeline<Function>(operators);
@@ -63,7 +63,7 @@ public class Main {
 		});
 		
 		int populationSize = 1000;
-		int eliteCount = 10;
+		int eliteCount = 5;
 		int generationLimit = 10000;
 		boolean naturalFitness = false;
 		TerminationCondition t1 = new Stagnation(generationLimit, naturalFitness);
