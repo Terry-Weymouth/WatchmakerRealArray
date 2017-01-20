@@ -47,7 +47,7 @@ public class Function {
 		}
 		return ret;
 	}
-
+	
 	public Function cross(Function other, Random rng) {
 		List<Double> p = new ArrayList<Double>();
 		int point = rng.nextInt(Main.NUMBER_OF_PARAMETERS - 1);

@@ -12,15 +12,20 @@ public class FunctionEvolutionObserver extends EvolutionMonitor<Function> {
 		this.fitnessEvaluator = fe;
 	}
 
+	private double lastFitness = 0.0;
+	
 	public void populationUpdate(PopulationData<? extends Function> data)
     {
 		super.populationUpdate(data);
     	Function fn = data.getBestCandidate();
     	double error = fitnessEvaluator.getFitness(fn, null);
-        System.out.printf("Generation %d: (%f) %s\n",
-                          data.getGenerationNumber(),
-                          error,
-                          fn);
+    	if (error != lastFitness) {
+    		lastFitness = error;
+	        System.out.printf("Generation %d: (%f) %s\n",
+	                          data.getGenerationNumber(),
+	                          error,
+	                          fn);
+    	}
     }
 
 }
