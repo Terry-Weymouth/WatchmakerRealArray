@@ -18,7 +18,7 @@ import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 public class Main {
 	
-	public static final int NUMBER_OF_PARAMETERS = 5;
+	public static final int NUMBER_OF_PARAMETERS = 9;
 	
 	public static void main(String[] args) {
 		(new Main()).exec();
@@ -53,7 +53,7 @@ public class Main {
 //		int generationLimit = 10000;
 //		TerminationCondition t1 = new Stagnation(generationLimit, naturalFitness);
 	
-		double targetFitness = 0.01;
+		double targetFitness = 0.000000001;
 		TerminationCondition t2 = new TargetFitness(targetFitness,naturalFitness);
 		
 		int populationSize = 1000;

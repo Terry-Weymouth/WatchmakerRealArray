@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TargetFunction {
 	
-	private static final double[] IDEAL_PARAMETERS = {5.0, 1.0, 0.0, 0.0, 0.0};
+	private static final double[] IDEAL_PARAMETERS = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
 
 	private List<Double> idealParameters = new ArrayList<Double>();
 

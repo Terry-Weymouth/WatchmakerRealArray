@@ -15,16 +15,15 @@ public class FunctionFitnessEvaluator implements FitnessEvaluator<Function> {
 	@Override
 	public double getFitness(Function fn, List<? extends Function> list) {
 		List<Double> parameters = fn.getParameters();
+		List<Double> idealp = target.getIdealParameter();
 		double error = 0.0;
-		double x = INIT_X;
-		for (int i = 0; i < NUMBER_OF_POINTS; i++ ){
-			double ideal = target.ideal_value(x);
-			double actual = target.value(x, parameters);
-			x += DELTA_X;
+		for (int i = 0; i < Main.NUMBER_OF_PARAMETERS; i++ ){
+			double ideal = idealp.get(i).doubleValue();
+			double actual = parameters.get(i).doubleValue();
 			double delta = ideal - actual;
 			error += delta * delta;
 		}
-		return error/(double)NUMBER_OF_POINTS;
+		return error/(double)Main.NUMBER_OF_PARAMETERS;
 	}
 
 	@Override
