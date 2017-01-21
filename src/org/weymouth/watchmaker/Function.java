@@ -81,5 +81,14 @@ public class Function {
 			parameters.remove(point+1);			
 		}
 	}
+	
+	public Function clone() {
+		List<Double> p = new ArrayList<Double>();
+		for (Double value: parameters) {
+			Double n = new Double(value.doubleValue());
+			p.add(n);
+		}
+		return new Function(p);
+	}
 
 }
