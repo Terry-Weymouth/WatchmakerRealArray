@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 import org.uncommons.maths.random.MersenneTwisterRNG;
 import org.uncommons.maths.random.Probability;
 import org.uncommons.watchmaker.framework.CandidateFactory;
@@ -26,6 +28,10 @@ public class Main {
 
 	private void exec() {
 		
+		FunctionController controller = new FunctionController();
+		
+		setupGui(controller);
+		
 		CandidateFactory<Function> candidateFactory = new FunctionFactory();
 		FunctionFitnessEvaluator fitnessEvaluator = new FunctionFitnessEvaluator();
 		SelectionStrategy<? super Function> selectionStrategy = new RouletteWheelSelection();
@@ -47,7 +53,8 @@ public class Main {
                 rng);
 	
 		engine.addEvolutionObserver(new FunctionEvolutionObserver(fitnessEvaluator));
-
+		engine.addEvolutionObserver(controller.getEvolutionObserver());
+		
 		boolean naturalFitness = false;		
 		
 //		int generationLimit = 10000;
@@ -61,5 +68,21 @@ public class Main {
 		
 		engine.evolve(populationSize,eliteCount,t2);
 	        
+	}
+
+	private void setupGui(final FunctionController c) {
+		
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	//Create and set up the window.
+                JFrame frame = new JFrame("Function GA Learner");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add(c.getJPanel());
+
+                //Display the window.
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
 	}
 }
