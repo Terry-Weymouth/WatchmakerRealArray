@@ -6,9 +6,9 @@ import org.uncommons.watchmaker.framework.FitnessEvaluator;
 
 public class FunctionFitnessEvaluator implements FitnessEvaluator<Function> {
 
-	private static final double INIT_X = -75.0;
-	private static final double DELTA_X = 0.5;
-	private static final int NUMBER_OF_POINTS = 300;
+	protected static final double INIT_X = -75.0;
+	protected static final double DELTA_X = 0.5;
+	protected static final int NUMBER_OF_POINTS = 300;
 	
 	private TargetFunction target = new TargetFunction();
 

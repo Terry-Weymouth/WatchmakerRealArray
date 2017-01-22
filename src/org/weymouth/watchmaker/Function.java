@@ -31,6 +31,12 @@ public class Function {
 		this.parameters = parameters;
 	}
 	
+	public Function() {
+		for (int i = 0; i < Main.NUMBER_OF_PARAMETERS; i++) {
+			parameters.add(0.0);
+		}
+	}
+
 	public List<Double> getParameters() {
 		return parameters;
 	}
