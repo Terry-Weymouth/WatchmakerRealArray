@@ -18,7 +18,7 @@ import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 public class Main {
 	
-	public static final int NUMBER_OF_PARAMETERS = 5;
+	public static final int NUMBER_OF_PARAMETERS = 4;
 	
 	public static void main(String[] args) {
 		(new Main()).exec();

@@ -69,7 +69,7 @@ public class Function {
 	public void mutate(Random rng) {
 		int point = rng.nextInt(Main.NUMBER_OF_PARAMETERS);
 		double p = parameters.get(point).doubleValue();
-		double delta = rng.nextDouble() * 2.0 - 1.0;
+		double delta = rng.nextDouble() * 6.0 - 3.0;
 		p = p + delta;
 		if ((p < 10.0) && (p > -10.0)) {
 			Double d = new Double(p);

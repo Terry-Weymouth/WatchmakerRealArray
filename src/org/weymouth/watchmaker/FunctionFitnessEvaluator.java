@@ -12,8 +12,12 @@ public class FunctionFitnessEvaluator implements FitnessEvaluator<Function> {
 	
 	private TargetFunction target = new TargetFunction();
 
+	private static int count = 0;
+	
 	@Override
 	public double getFitness(Function fn, List<? extends Function> list) {
+		count++;
+		System.out.println(count);
 		List<Double> parameters = fn.getParameters();
 		double error = 0.0;
 		double x = INIT_X;
